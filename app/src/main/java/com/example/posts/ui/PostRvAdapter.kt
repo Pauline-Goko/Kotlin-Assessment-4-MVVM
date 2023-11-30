@@ -8,10 +8,10 @@ import androidx.recyclerview.widget.RecyclerView.RecycledViewPool
 import com.example.posts.databinding.PostListBinding
 import com.example.posts.model.Post
 
-class PostRvAdapter (var posts: List<Post>):RecyclerView.Adapter<PostViewHolder>(){
+class PostRvAdapter (var posts: List<Post>):RecyclerView.Adapter<PostRvAdapter.PostViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
-        val binding = PostListBinding.inflate(LayoutInflater.from(parent.context))
+        val binding = PostListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return PostViewHolder(binding)
     }
 
@@ -27,17 +27,9 @@ class PostRvAdapter (var posts: List<Post>):RecyclerView.Adapter<PostViewHolder>
             tvBody.text = myPosts.body
 
         }
-
-
-
     }
-
-
-
-
+    class PostViewHolder(var binding: PostListBinding): RecyclerView.ViewHolder(binding.root)
 
 }
 
 
-
-class PostViewHolder(var binding: PostListBinding): RecyclerView.ViewHolder(binding.root)

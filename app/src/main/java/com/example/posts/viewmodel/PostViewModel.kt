@@ -14,6 +14,14 @@ class PostViewModel: ViewModel() {
 
 
     fun fetchPosts() {
+        viewModelScope.launch {
+            val response = postsRepo.getPosts()
+            if (response.isSuccessful){
+                postsLiveData.postValue(response.body())
+            }   else{
+                errLiveData.postValue(response.errorBody()?.string())
+            }
+        }
 
 
     }
